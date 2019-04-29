@@ -50,15 +50,15 @@ public class UserController {
 	private UserDao userDao;
 
 	@LogAnnotation
-	@PostMapping
+	@PostMapping("/add")
 	@ApiOperation(value = "保存用户")
-	@RequiresPermissions("sys:user:add")
+//	@RequiresPermissions("sys:user:add")
 	public User saveUser(@RequestBody UserDto userDto) {
+		System.out.println(userDto.getUsername());
 		User u = userService.getUser(userDto.getUsername());
 		if (u != null) {
 			throw new IllegalArgumentException(userDto.getUsername() + "已存在");
 		}
-
 		return userService.saveUser(userDto);
 	}
 
@@ -89,6 +89,13 @@ public class UserController {
 	@RequiresPermissions("sys:user:password")
 	public void changePassword(@PathVariable String username, String oldPassword, String newPassword) {
 		userService.changePassword(username, oldPassword, newPassword);
+	}
+
+	@LogAnnotation
+	@ApiOperation(value = "忘记密码")
+	@PostMapping("/forget")
+	public void forgetPassword(@RequestBody User user) {
+		userService.forgetPassword(user.getUsername(), user.getPassword().toString());
 	}
 
 	@GetMapping

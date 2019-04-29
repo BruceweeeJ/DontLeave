@@ -6,7 +6,9 @@ import com.zw.admin.server.model.User;
 public interface UserService {
 
 	User saveUser(UserDto userDto);
-	
+
+	void forgetPassword(String username, String newPassword);
+
 	User updateUser(UserDto userDto);
 
 	String passwordEncoder(String credentials, String salt);

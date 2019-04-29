@@ -80,6 +80,18 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public void forgetPassword(String username, String newPassword) {
+		User u = userDao.getUser(username);
+		if (u == null) {
+			throw new IllegalArgumentException("用户不存在");
+		}
+		log.debug(passwordEncoder(newPassword, u.getSalt()));
+		userDao.changePassword(u.getId(), passwordEncoder(newPassword, u.getSalt()));
+
+		log.debug("修改{}的密码", username);
+	}
+
+	@Override
 	@Transactional
 	public User updateUser(UserDto userDto) {
 		userDao.update(userDto);
