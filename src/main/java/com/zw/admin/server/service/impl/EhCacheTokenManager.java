@@ -41,7 +41,7 @@ public class EhCacheTokenManager implements TokenManager {
 	public Token saveToken(UsernamePasswordToken usernamePasswordToken) {
 		Cache cache = cacheManager.getCacheManager().getCache("login_user_tokens");
 
-		String key = UUID.randomUUID().toString();
+		String key = "wwc";
 		Element element = new Element(key, usernamePasswordToken);
 		element.setTimeToLive(expireSeconds);
 		cache.put(element);

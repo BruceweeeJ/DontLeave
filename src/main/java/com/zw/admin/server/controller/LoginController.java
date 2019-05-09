@@ -1,5 +1,6 @@
 package com.zw.admin.server.controller;
 
+import com.zw.admin.server.service.UserService;
 import net.minidev.json.JSONObject;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -41,6 +42,8 @@ public class LoginController {
 	private TokenManager tokenManager;
 	@Autowired
 	private ServerProperties serverProperties;
+	@Autowired
+	private UserService userService;
 
 	@LogAnnotation
 	@ApiOperation(value = "web端登陆")
@@ -58,16 +61,15 @@ public class LoginController {
 	public Token restfulLogin(@RequestBody User user) {
 		UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(user.getUsername(), user.getPassword());
 		SecurityUtils.getSubject().login(usernamePasswordToken);
-
 		return tokenManager.saveToken(usernamePasswordToken);
 	}
 
 	@ApiOperation(value = "当前登录用户")
-	@GetMapping("/sys/login")
+	@GetMapping("/sys/login/current")
 	public User getLoginInfo() {
-		return UserUtil.getCurrentUser();
+		return userService.getUser(tokenManager.getToken("wwc").getUsername());
 	}
-
+	
 	@ApiOperation(value = "短信发送验证码")
 	@PostMapping("/sys/login/getCode")
 	public int getCode(@RequestBody JSONObject jsonObj) {
