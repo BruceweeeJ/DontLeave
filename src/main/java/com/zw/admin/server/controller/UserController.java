@@ -2,6 +2,8 @@ package com.zw.admin.server.controller;
 
 import java.util.List;
 
+import com.zw.admin.server.model.Course;
+import com.zw.admin.server.service.CourseService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,6 +49,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private CourseService courseService;
 
     @LogAnnotation
     @PostMapping("/add")
@@ -128,6 +132,13 @@ public class UserController {
     @RequiresPermissions("sys:user:query")
     public User user(@PathVariable Long id) {
         return userDao.getById(id);
+    }
+
+    @LogAnnotation
+    @ApiOperation(value = "根据用户id获取用户课程")
+    @PostMapping("/course")
+    public List<Course> course(@RequestBody Course course) {
+        return courseService.getCourses(course.getStuId());
     }
 
 }

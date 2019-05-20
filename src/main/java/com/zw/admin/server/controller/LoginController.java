@@ -69,7 +69,7 @@ public class LoginController {
 	public User getLoginInfo() {
 		return userService.getUser(tokenManager.getToken("wwc").getUsername());
 	}
-	
+
 	@ApiOperation(value = "短信发送验证码")
 	@PostMapping("/sys/login/getCode")
 	public int getCode(@RequestBody JSONObject jsonObj) {
