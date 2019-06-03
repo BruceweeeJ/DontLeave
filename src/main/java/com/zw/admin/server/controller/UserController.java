@@ -138,6 +138,7 @@ public class UserController {
     @ApiOperation(value = "根据用户id获取用户课程")
     @PostMapping("/course")
     public List<Course> course(@RequestBody Course course) {
+        System.out.println(courseService.getCourses(course.getStuId()));
         return courseService.getCourses(course.getStuId());
     }
 
