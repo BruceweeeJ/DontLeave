@@ -10,6 +10,7 @@ public class CourseList {
     private String requirement;
     private String progress;
     private String schedule;
+    private int tag;
 
     public String getCourseNumber() {
         return courseNumber;
@@ -83,10 +84,18 @@ public class CourseList {
         this.schedule = schedule;
     }
 
+    public int getTag() {
+        return tag;
+    }
+
+    public void setTag(int tag) {
+        this.tag = tag;
+    }
+
     public CourseList() {
     }
 
-    public CourseList(String courseNumber, String courseName, String teachName, String className, String schoolTerm, String schoolName, String requirement, String progress, String schedule) {
+    public CourseList(String courseNumber, String courseName, String teachName, String className, String schoolTerm, String schoolName, String requirement, String progress, String schedule, int tag) {
         this.courseNumber = courseNumber;
         this.courseName = courseName;
         this.teachName = teachName;
@@ -96,5 +105,6 @@ public class CourseList {
         this.requirement = requirement;
         this.progress = progress;
         this.schedule = schedule;
+        this.tag = tag;
     }
 }
