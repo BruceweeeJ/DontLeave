@@ -5,6 +5,9 @@ import com.zw.admin.server.model.CourseList;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
+import java.util.List;
 
 @Mapper
 public interface CourseListDao {
@@ -15,4 +18,21 @@ public interface CourseListDao {
     @Select("select * from courselist c where c.courseNumber=#{courseNumber}")
     CourseList courseInfo(String courseNumber);
 
+    @Select("select * from courselist c where c.teachNumber=#{teachNumber}")
+    List<CourseList> teachCourse(String teachNumber);
+
+    @Update("update courselist t set t.tag = 1 where t.courseNumber = #{courseNumber}")
+    int raiseCheck(String courseNumber);
+
+    @Update("update courselist t set t.tag = 0 where t.courseNumber = #{courseNumber}")
+    int endCheck(String courseNumber);
+
+    @Update("update courselist t set t.lastCheckTime = #{lastCheckTime} where t.courseNumber = #{courseNumber}")
+    int lastCheckTime(String lastCheckTime,String courseNumber);
+
+    @Select("select lastCheckTime from courselist where courseNumber = #{courseNumber}")
+    String getLastCheckTime(String courseNumber);
+
+    @Select("select tag from courselist where courseNumber = #{courseNumber}")
+    int isChecking(String courseNumber);
 }

@@ -11,6 +11,16 @@ public class CourseList {
     private String requirement;
     private String progress;
     private String schedule;
+    private String lastCheckTime;
+
+    public String getLastCheckTime() {
+        return lastCheckTime;
+    }
+
+    public void setLastCheckTime(String lastCheckTime) {
+        this.lastCheckTime = lastCheckTime;
+    }
+
     private int tag;
 
     public String getCourseNumber() {
