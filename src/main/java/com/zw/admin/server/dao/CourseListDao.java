@@ -11,6 +11,9 @@ import java.util.List;
 
 @Mapper
 public interface CourseListDao {
+    @Select("select * from courselist")
+    List<CourseList> getAll();
+
     @Insert("insert into courselist(courseNumber, courseName, teachName, className, schoolName, schoolTerm, requirement, progress, schedule,teachNumber) " +
             "values(#{courseNumber}, #{courseName}, #{teachName}, #{className}, #{schoolName}, #{schoolTerm}, #{requirement}, #{progress}, #{schedule},#{teachNumber})")
     void save(CourseList course);

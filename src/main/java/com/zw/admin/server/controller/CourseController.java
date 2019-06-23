@@ -222,4 +222,12 @@ public class CourseController {
         }
         return ResponseEntity.ok(result);
     }
+
+    @LogAnnotation
+    @RequestMapping("/getAll")
+    @ApiOperation(value = "获取所有课程")
+    public List<CourseList> getAll(){
+        return courseListDao.getAll();
+    }
+
 }
