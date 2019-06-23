@@ -17,4 +17,9 @@ public class CourseServiceImpl implements CourseService {
     public List<Course> getCourses(String stuId) {
         return courseDao.getCourses(stuId);
     }
+
+    @Override
+    public List<Course> showMember(String courseNumber) {
+        return courseDao.showMember(courseNumber);
+    }
 }

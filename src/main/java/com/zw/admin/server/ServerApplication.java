@@ -2,15 +2,11 @@ package com.zw.admin.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-/**
- * 启动类
- * 
- * @author 小威老师 xiaoweijiagou@163.com
- *
- *         2017年4月18日
- */
+
 @SpringBootApplication
+@EnableSwagger2
 public class ServerApplication {
 
 	public static void main(String[] args) {

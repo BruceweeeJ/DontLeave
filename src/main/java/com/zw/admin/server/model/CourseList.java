@@ -4,6 +4,7 @@ public class CourseList {
     private String courseNumber;
     private String courseName;
     private String teachName;
+    private String teachNumber;
     private String className;
     private String schoolTerm;
     private String schoolName;
@@ -34,6 +35,14 @@ public class CourseList {
 
     public void setTeachName(String teachName) {
         this.teachName = teachName;
+    }
+
+    public String getTeachNumber() {
+        return teachNumber;
+    }
+
+    public void setTeachNumber(String teachNumber) {
+        this.teachNumber = teachNumber;
     }
 
     public String getClassName() {
@@ -95,10 +104,11 @@ public class CourseList {
     public CourseList() {
     }
 
-    public CourseList(String courseNumber, String courseName, String teachName, String className, String schoolTerm, String schoolName, String requirement, String progress, String schedule, int tag) {
+    public CourseList(String courseNumber, String courseName, String teachName, String teachNumber, String className, String schoolTerm, String schoolName, String requirement, String progress, String schedule, int tag) {
         this.courseNumber = courseNumber;
         this.courseName = courseName;
         this.teachName = teachName;
+        this.teachNumber = teachNumber;
         this.className = className;
         this.schoolTerm = schoolTerm;
         this.schoolName = schoolName;

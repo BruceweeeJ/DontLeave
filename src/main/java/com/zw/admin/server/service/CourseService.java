@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface CourseService {
     List<Course> getCourses(String stuId);
+    List<Course> showMember(String courseNumber);
 }
