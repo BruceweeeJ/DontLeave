@@ -73,7 +73,7 @@ public class LoginController {
 	@ApiOperation(value = "短信发送验证码")
 	@PostMapping("/sys/login/getCode")
 	public int getCode(@RequestBody JSONObject jsonObj) {
-		HttpPost post = new HttpPost("https://open.ucpaas.com/ol/sms/sendsms哈哈哈");
+		HttpPost post = new HttpPost("https://open.ucpaas.com/ol/sms/sendsms");
 		HttpClient httpClient  = HttpClientBuilder.create().build();
 		HttpResponse response = null;
 		System.out.println(jsonObj);
