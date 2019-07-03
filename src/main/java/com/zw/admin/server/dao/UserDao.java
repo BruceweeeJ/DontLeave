@@ -3,6 +3,7 @@ package com.zw.admin.server.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.zw.admin.server.model.CourseList;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -16,6 +17,8 @@ import com.zw.admin.server.model.User;
 @Mapper
 public interface UserDao {
 
+	@Select("select * from sys_user")
+	List<User> getAlluser();
 	@Options(useGeneratedKeys = true, keyProperty = "id")
 	@Insert("insert into sys_user(username, password, salt, nickname, headImgUrl, phone, telephone, email, birthday, sex, status, createTime, updateTime) values(#{username}, #{password}, #{salt}, #{nickname}, #{headImgUrl}, #{phone}, #{telephone}, #{email}, #{birthday}, #{sex}, #{status}, now(), now())")
 	int save(User user);
@@ -36,6 +39,9 @@ public interface UserDao {
 
 	@Delete("delete from sys_role_user where userId = #{userId}")
 	int deleteUserRole(Long userId);
+
+	@Delete("delete from sys_user where id = #{id}")
+	int deleteUser(Long id);
 
 	int saveUserRoles(@Param("userId") Long userId, @Param("roleIds") List<Long> roleIds);
 

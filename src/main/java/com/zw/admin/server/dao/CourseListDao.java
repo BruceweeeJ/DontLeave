@@ -2,10 +2,7 @@ package com.zw.admin.server.dao;
 
 import com.zw.admin.server.model.Course;
 import com.zw.admin.server.model.CourseList;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -38,4 +35,9 @@ public interface CourseListDao {
 
     @Select("select tag from courselist where courseNumber = #{courseNumber}")
     int isChecking(String courseNumber);
+
+    @Delete("delete from courselist where courseNumber = #{courseNumber}")
+    int deleteCourselist(String courseNumber);
+
+    int update(CourseList courseList);
 }

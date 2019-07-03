@@ -223,11 +223,25 @@ public class CourseController {
         return ResponseEntity.ok(result);
     }
 
-//    @LogAnnotation
-//    @RequestMapping("/getAll")
-//    @ApiOperation(value = "获取所有课程")
-//    public List<CourseList> getAll(){
-//        return courseListDao.getAll();
-//    }
+    @LogAnnotation
+    @RequestMapping("/getAll")
+    @ApiOperation(value = "获取所有课程")
+    public List<CourseList> getAll(){
+        return courseListDao.getAll();
+    }
+
+    @LogAnnotation
+    @RequestMapping("/updateCourselist")
+    @ApiOperation(value = "修改课程")
+    public int uodateCourselist(@RequestBody CourseList courseList){
+        return courseListDao.update(courseList);
+    }
+
+    @LogAnnotation
+    @RequestMapping("/deleteCourselist/{courseNumber}")
+    @ApiOperation(value = "删除课程")
+    public int uodateCourselist(@PathVariable String courseNumber){
+        return courseListDao.deleteCourselist(courseNumber);
+    }
 
 }

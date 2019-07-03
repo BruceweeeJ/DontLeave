@@ -4,18 +4,13 @@ import java.util.List;
 
 import com.zw.admin.server.model.Course;
 import com.zw.admin.server.service.CourseService;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.zw.admin.server.annotation.LogAnnotation;
 import com.zw.admin.server.dao.UserDao;
@@ -68,9 +63,17 @@ public class UserController {
     @LogAnnotation
     @PutMapping
     @ApiOperation(value = "修改用户")
-    @RequiresPermissions("sys:user:add")
+    //@RequiresPermissions("sys:user:add")
     public User updateUser(@RequestBody UserDto userDto) {
         return userService.updateUser(userDto);
+    }
+
+    @LogAnnotation
+    @PutMapping("/updatauser")
+    @ApiOperation(value = "修改用户")
+    //@RequiresPermissions("sys:user:add")
+    public int updateuser(@RequestBody User user) {
+        return userDao.update(user);
     }
 
     @LogAnnotation
@@ -141,5 +144,19 @@ public class UserController {
         System.out.println(courseService.getCourses(course.getStuId()));
         return courseService.getCourses(course.getStuId());
     }
+    @LogAnnotation
+    @GetMapping("/getAll")
+    @ApiOperation(value = "获取所有用户")
+    public List<User> getAlluser(){
+        return userDao.getAlluser();
+    }
+
+    @LogAnnotation
+    @ApiOperation(value = "根据用户id删除用户")
+    @DeleteMapping("/deleteuser/{id}")
+    public int deleteUser(@PathVariable Long id) {
+        return userDao.deleteUser(id);
+    }
+
 
 }
